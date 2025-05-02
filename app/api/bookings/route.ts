@@ -1,13 +1,14 @@
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../auth/[...nextauth]/route';
 
 const prisma = new PrismaClient();
 
 // Get user's bookings
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     
     if (!session?.user?.id) {
       return NextResponse.json(
@@ -42,7 +43,7 @@ export async function GET(request: NextRequest) {
 // Create a new booking
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     
     if (!session?.user?.id) {
       return NextResponse.json(
