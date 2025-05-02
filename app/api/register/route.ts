@@ -43,7 +43,14 @@ export async function POST(request: NextRequest) {
     });
     
     // Return the user without the password
-    const { password: _, ...userWithoutPassword } = user;
+    const userWithoutPassword = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt
+    };
+    
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error registering user:', error);

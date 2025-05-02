@@ -100,7 +100,7 @@ export default function Dashboard() {
           ) : error ? (
             <p className="text-red-600">{error}</p>
           ) : bookings.length === 0 ? (
-            <p>You don't have any bookings yet.</p>
+            <p>You don&apos;t have any bookings yet.</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
